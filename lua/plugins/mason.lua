@@ -1,6 +1,11 @@
 return {
   {
     "williamboman/mason.nvim",
+    opts = {
+            ensure_installed = {
+                'eslint_lsp'
+            }
+        },
     lazy = false,
     config = function()
       require("mason").setup()
@@ -20,20 +25,46 @@ return {
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
       local lspconfig = require("lspconfig")
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities,
-        filetypes = {
-                "vue"}
-      })
-    lspconfig.gleam.setup({})
-      lspconfig.tsserver.setup({
-        capabilities = capabilities
-      })
       lspconfig.html.setup({
         capabilities = capabilities
       })
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities
+      lspconfig.eslint.setup({
+        capabilities = capabilities,
+        settings = 
+        {
+          codeAction = {
+            disableRuleComment = {
+              enable = true,
+              location = "separateLine"
+            },
+            showDocumentation = {
+              enable = true
+            }
+          },
+          codeActionOnSave = {
+            enable = false,
+            mode = "all"
+          },
+          experimental = {
+            useFlatConfig = false
+          },
+          format = true,
+          nodePath = "",
+          onIgnoredFiles = "off",
+          problems = {
+            shortenToSingleLine = false
+          },
+          quiet = false,
+          rulesCustomizations = {
+                                    always = true
+                                },
+          run = "onType",
+          useESLintClass = false,
+          validate = "on",
+          workingDirectory = {
+            mode = "location"
+          }
+        },
       })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})

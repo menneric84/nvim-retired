@@ -20,15 +20,23 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>t", ":Neotree filesystem reveal right<CR>")
 vim.keymap.set("n", "<leader>wq", ":wq<CR>")
 vim.keymap.set("n", "<leader>w", ":w<CR>")
+vim.keymap.set("n", "<leader>s", ":vs<CR>")
 vim.keymap.set("n", "<leader>qq", ":q<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>q!", ":q!<CR>")
+vim.keymap.set("n", "<leader>cc", ":CopilotChatToggle<CR>")
+vim.keymap.set("n", "<leader>m",  ":lua require('harpoon.mark').add_file()<CR>")
+vim.keymap.set("n", "<leader>mm", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
+vim.keymap.set("n", "<leader>bp", ":lua require('harpoon.ui').nav_next()<CR>")
+vim.keymap.set("n", "<leader>bn", ":lua require('harpoon.ui').nav_prev()<CR>")
+vim.keymap.set("n", "<leader>bs", "<C-w><")
+vim.keymap.set("n", "<leader>bb", "<C-w>>")
 
 local configs = require("nvim-treesitter.configs")
 
 configs.setup({
 	auto_install = "true",
-	ensure_installed = { "c", "lua", "vim" , "javascript", "html", "vue", 'css', 'scss' },
+	ensure_installed = { "c", "lua", "vim" , "javascript", "html", "vue", 'css', 'scss', 'typescript' },
 	highlight = { enable = true },
 	indent = { enable = true },
 })
@@ -206,8 +214,6 @@ keyset("n", "<space>e", ":<C-u>CocList extensions<cr>", opts)
 keyset("n", "<space>c", ":<C-u>CocList commands<cr>", opts)
 -- Find symbol of current document
 keyset("n", "<space>o", ":<C-u>CocList outline<cr>", opts)
--- Search workspace symbols
-keyset("n", "<space>s", ":<C-u>CocList -I symbols<cr>", opts)
 -- Do default action for next item
 keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 -- Do default action for previous item
