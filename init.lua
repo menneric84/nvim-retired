@@ -5,10 +5,9 @@ vim.cmd("set shiftwidth=4")
 vim.cmd("set number")
 vim.cmd("set ignorecase")
 vim.g.mapleader = "<Space>"
-
+vim.opt.clipboard = { 'unnamed', 'unnamedplus' }
 
 require("config.lazy")
-
 require("catppuccin").setup()
 vim.cmd.colorscheme = "catppuccin"
 
@@ -32,8 +31,18 @@ vim.keymap.set("n", "<leader>bn", ":lua require('harpoon.ui').nav_prev()<CR>")
 vim.keymap.set("n", "<leader>bs", "<C-w><")
 vim.keymap.set("n", "<leader>bb", "<C-w>>")
 
-local configs = require("nvim-treesitter.configs")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>yy", "\"+yy")
 
+vim.keymap.set("v", "<leader>p", "\"+p")
+vim.keymap.set("n", "<leader>p", "\"+p")
+
+vim.keymap.set("v", "<leader>d", "\"_d")
+vim.keymap.set("n", "<leader>dd", "\"_dd")
+local configs = require("nvim-treesitter.configs")
+require('leap').set_default_mappings()
+vim.keymap.set('n','F', '<Plug>(leap-from-window)')
 configs.setup({
 	auto_install = "true",
 	ensure_installed = { "c", "lua", "vim" , "javascript", "html", "vue", 'css', 'scss', 'typescript' },
@@ -210,8 +219,6 @@ local opts = {silent = true, nowait = true}
 keyset("n", "<space>a", ":<C-u>CocList diagnostics<cr>", opts)
 -- Manage extensions
 keyset("n", "<space>e", ":<C-u>CocList extensions<cr>", opts)
--- Show commands
-keyset("n", "<space>c", ":<C-u>CocList commands<cr>", opts)
 -- Find symbol of current document
 keyset("n", "<space>o", ":<C-u>CocList outline<cr>", opts)
 -- Do default action for next item
