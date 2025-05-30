@@ -19,10 +19,12 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>t", ":Neotree filesystem reveal right<CR>")
 vim.keymap.set("n", "<leader>wq", ":wq<CR>")
 vim.keymap.set("n", "<leader>w", ":w<CR>")
-vim.keymap.set("n", "<leader>s", ":vs<CR>")
-vim.keymap.set("n", "<leader>qq", ":q<CR>")
+vim.keymap.set("n", "<leader>ww", ":w<CR>")
+vim.keymap.set("n", "<leader>vs", ":vs<CR>")
+vim.keymap.set("n", "<leader>qq", ":q!<CR>")
 vim.keymap.set("n", "<leader>q", ":q<CR>")
 vim.keymap.set("n", "<leader>q!", ":q!<CR>")
+vim.keymap.set("n", "<leader>db", ":DBUI<CR>")
 vim.keymap.set("n", "<leader>cc", ":CopilotChatToggle<CR>")
 vim.keymap.set("n", "<leader>m",  ":lua require('harpoon.mark').add_file()<CR>")
 vim.keymap.set("n", "<leader>mm", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
@@ -39,6 +41,11 @@ vim.keymap.set("v", "<leader>p", "\"+p")
 vim.keymap.set("n", "<leader>p", "\"+p")
 
 vim.keymap.set("v", "<leader>d", "\"_d")
+vim.keymap.set("n", "<leader>d", "\"_d")
+vim.keymap.set("v", "<leader>c", "\"_c")
+vim.keymap.set("n", "<leader>c", "\"_c")
+vim.keymap.set("v", "<leader>D", "\"_D")
+vim.keymap.set("n", "<leader>D", "\"_D")
 vim.keymap.set("n", "<leader>dd", "\"_dd")
 local configs = require("nvim-treesitter.configs")
 require('leap').set_default_mappings()
@@ -227,3 +234,28 @@ keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- Resume latest coc list
 keyset("n", "<space>p", ":<C-u>CocListResume<cr>", opts)
+
+require("jirac").setup({
+    email = "rick_menne@trekbikes.com",
+    jira_domain = "trekbikes.atlassian.net",
+    api_key = "",
+    config = {
+        default_project_key = "ASC",
+        keymaps = {
+            ["close-window"] = {
+                mode = 'n',
+                key = 'q'
+            },
+            ["previous-tab"] = {
+                mode = 'n',
+                key = 'H'
+            },
+            ["refresh-window"] = {
+                mode = 'n',
+                key = "<F5>"
+            }
+        },
+        window_width = 150,
+        window_height = 50
+    }
+})
